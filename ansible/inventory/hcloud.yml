@@ -1,6 +1,5 @@
 ---
 plugin: hcloud
-# This tells Ansible to look at your system's environment variables
 token: "{{ lookup('env', 'HCLOUD_TOKEN') }}"
 
 groups:
