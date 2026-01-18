@@ -1,0 +1,18 @@
+---
+plugin: hcloud
+# This tells Ansible to look at your system's environment variables
+token: "{{ lookup('env', 'HCLOUD_TOKEN') }}"
+
+groups:
+  apis: "'api' in labels.role"
+  db: "'db' in labels.role"
+  prod_env: "'prod' in labels.env"
+  dev_env: "'dev' in labels.env"
+
+hostnames:
+  - ipv4_address
+
+compose:
+  ansible_user: "'root'"
+  ansible_ssh_private_key_file: "'/home/n/.ssh/id_ed25519'"
+  ansible_ssh_common_args: "'-o StrictHostKeyChecking=no'"

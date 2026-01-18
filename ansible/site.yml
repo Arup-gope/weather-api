@@ -1,0 +1,42 @@
+---
+- name: Configure API Servers
+  hosts: apis          
+  become: yes
+  tasks:
+    - name: Install Docker #Docker Installation
+      apt:
+        name: 
+          - docker.io
+          - python3-docker
+        state: present
+        update_cache: yes
+
+    - name: Ensure Docker starts on boot
+      systemd:
+        name: docker
+        enabled: yes
+        state: started
+
+    - name: Run Weather API Container #Ensure Docker starts on boot
+      docker_container:
+        name: weather-api
+        image: arupgope/weather-api:latest
+        state: started
+        restart_policy: always
+        published_ports:
+          - "8080:8080"
+
+- name: Configure Database Server #Configure Database Server
+  hosts: db                
+  become: yes
+  tasks:
+    - name: Install PostgreSQL
+      apt:
+        name: postgresql
+        state: present
+
+    - name: Ensure PostgreSQL starts on boot (Reliability) #Ensure PostgreSQL starts on boot
+      systemd:
+        name: postgresql
+        enabled: yes
+        state: started

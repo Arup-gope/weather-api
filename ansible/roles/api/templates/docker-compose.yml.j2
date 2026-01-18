@@ -1,0 +1,8 @@
+services:
+  server:
+    image: arupgope/weather-api:latest
+    ports:
+      - "8080:8080"
+    restart: always  # <--- This ensures the API starts automatically on boot
+    environment:
+      - DB_URL=postgres://user:pass@{{ groups['db'][0] }}:5432/weather

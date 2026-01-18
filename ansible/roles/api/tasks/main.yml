@@ -1,0 +1,13 @@
+---
+- name: Create app directory
+  file:
+    path: /opt/weather-api
+    state: directory
+
+- name: Copy Docker Compose
+  template:
+    src: docker-compose.yml.j2
+    dest: /opt/weather-api/docker-compose.yml
+
+- name: Start API container
+  shell: docker-compose -f /opt/weather-api/docker-compose.yml up -d
