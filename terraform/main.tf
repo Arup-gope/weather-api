@@ -7,15 +7,14 @@ terraform {
   }
 }
 
-# The provider uses the sensitive variable injected via TF_VAR_hcloud_token
+
 provider "hcloud" {
   token = var.hcloud_token
 }
 
-# Global SSH Key used by both environments
 resource "hcloud_ssh_key" "default" {
   name       = "devops-takehome-key"
-  public_key = file("~/.ssh/id_ed25519.pub") # Note: use ~/.ssh/ for better portability between WSL/Windows
+  public_key = file("~/.ssh/id_ed25519.pub") 
 }
 
 # --- Development Environment ---
