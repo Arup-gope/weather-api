@@ -26,6 +26,26 @@ This project deploys a highly available, multi-tier Weather API platform on Hetz
 The same architecture is deployed for both **development** and **production** environments using variable-driven configuration.
 
 ---
+## Continuous Integration (CI) and Continuous Deployment (CD)
+
+### Continuous Integration (CI) with Jenkins
+
+- **Trigger:** Jenkins detects a new commit in the GitHub repository.
+- **Pipeline Steps:**
+  - Executes unit tests
+  - Runs security scans (Snyk/Trivy)
+  - Builds the Docker image
+  - Pushes the Docker image to the container registry
+- **Manifest Update:** Jenkins automatically updates the image tag in Kubernetes or Docker Compose manifests in a dedicated GitOps repository.
+
+---
+
+### Continuous Deployment (CD) with ArgoCD
+
+- **GitOps Pattern:** ArgoCD continuously monitors the Git repository for changes in infrastructure or application manifests.
+- **Automatic Sync:** When Jenkins updates the image tag in Git, ArgoCD detects any drift between Git and the deployed environment.
+- **Deployment:** ArgoCD performs a rolling update across all API nodes (2 Dev, 3 Prod), ensuring zero downtime during deployment.
+
 
 ## Prerequisites
 
