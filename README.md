@@ -26,25 +26,6 @@ This project deploys a highly available, multi-tier Weather API platform on Hetz
 The same architecture is deployed for both **development** and **production** environments using variable-driven configuration.
 
 ---
-## Continuous Integration (CI) and Continuous Deployment (CD)
-
-### Continuous Integration (CI) with Jenkins
-
-- **Trigger:** Jenkins detects a new commit in the GitHub repository.
-- **Pipeline Steps:**
-  - Executes unit tests
-  - Runs security scans (Snyk/Trivy)
-  - Builds the Docker image
-  - Pushes the Docker image to the container registry
-- **Manifest Update:** Jenkins automatically updates the image tag in Kubernetes or Docker Compose manifests in a dedicated GitOps repository.
-
----
-
-### Continuous Deployment (CD) with ArgoCD
-
-- **GitOps Pattern:** ArgoCD continuously monitors the Git repository for changes in infrastructure or application manifests.
-- **Automatic Sync:** When Jenkins updates the image tag in Git, ArgoCD detects any drift between Git and the deployed environment.
-- **Deployment:** ArgoCD performs a rolling update across all API nodes (2 Dev, 3 Prod), ensuring zero downtime during deployment.
 
 
 ## Prerequisites
@@ -121,7 +102,7 @@ Hosts are discovered dynamically using Hetzner Cloud labels and configured accor
 
 ##  Verifying the Deployment
 
-Retrieve the load balancer IP address or DNS name from Terraform outputs.
+Retrieve the load balancer IP address from Terraform outputs.
 
 Verify the health check endpoint:
 
@@ -134,6 +115,36 @@ curl http://<load_balancer_ip>:80/weather
 
 <img width="1017" height="270" alt="Ansible_Output_Test" src="https://github.com/user-attachments/assets/f188799b-9000-4959-ab44-2a27555a3da4" />
 
+## Continuous Integration (CI) and Continuous Deployment (CD)
+
+### Continuous Integration (CI) with Jenkins
+
+- **Trigger:** Jenkins detects a new commit in the GitHub repository.
+- **Pipeline Steps:**
+  - Executes unit tests
+  - Runs security scans (Snyk/Trivy)
+  - Builds the Docker image
+  - Pushes the Docker image to the container registry
+- **Manifest Update:** Jenkins automatically updates the image tag in Kubernetes or Docker Compose manifests in a dedicated GitOps repository.
+
+---
+
+### Continuous Deployment (CD) with ArgoCD
+
+- **GitOps Pattern:** ArgoCD continuously monitors the Git repository for changes in infrastructure or application manifests.
+- **Automatic Sync:** When Jenkins updates the image tag in Git, ArgoCD detects any drift between Git and the deployed environment.
+- **Deployment:** ArgoCD performs a rolling update across all API nodes (2 Dev, 3 Prod), ensuring zero downtime during deployment.
+
+## Scaling the Infrastructure
+
+- **Horizontal Scaling:**  
+  To add more API servers, update the `api_instance_count` variable in `terraform.tfvars` and apply the changes:
+
+  ```bash
+  terraform apply -var-file="terraform.tfvars"
+  ```
+###Automatic Discovery:
+Any new servers are automatically detected by Ansible using the Hetzner Cloud dynamic inventory plugin and configured according to their assigned roles.
 
 
 
