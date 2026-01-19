@@ -143,7 +143,7 @@ curl http://<load_balancer_ip>:80/weather
   ```bash
   terraform apply -var-file="terraform.tfvars"
   ```
-###Automatic Discovery:
+### Automatic Discovery:
 Any new servers are automatically detected by Ansible using the Hetzner Cloud dynamic inventory plugin and configured according to their assigned roles.
 
 
