@@ -65,7 +65,7 @@ $env:TF_VAR_hcloud_token="<hetzner_token>"
 │   └── compose.yaml
 └── README.md
 ```
-##Deploying the Infrastructure
+## Deploying the Infrastructure
 Provision all cloud resources using Terraform:
 ```bash
 cd terraform
