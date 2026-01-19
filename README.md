@@ -131,7 +131,7 @@ curl http://<load_balancer_ip>:80/weather
 
 ### Continuous Deployment (CD) with ArgoCD
 
-- **GitOps Pattern:** ArgoCD continuously monitors the Git repository for changes in infrastructure or application manifests.
+- **GitOps Pattern:** ArgoCD continuously monitors the Git repository for changes in infrastructure or application manifests and will deploy them in kubernetes cluster.
 - **Automatic Sync:** When Jenkins updates the image tag in Git, ArgoCD detects any drift between Git and the deployed environment.
 - **Deployment:** ArgoCD performs a rolling update across all API nodes (2 Dev, 3 Prod), ensuring zero downtime during deployment.
 
