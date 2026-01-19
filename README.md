@@ -82,6 +82,8 @@ This provisions the following components:
 
 - Database servers
 
+
+
 ##Configuring the Servers
 ```
 cd ansible
@@ -89,7 +91,8 @@ ansible-playbook -i inventory/hcloud.yml site.yml
 ```
 Hosts are discovered dynamically using Hetzner Cloud labels and configured according to their assigned roles.
 
-
+<img width="1713" height="935" alt="Ansible_Configuration_1" src="https://github.com/user-attachments/assets/4edd5a73-aefd-4aed-b885-798ddc4fe28d" />
+**Figure 1:** Ansible Configuration Overview
 ##Verifying the Deployment
 
 Retrieve the load balancer IP address or DNS name from Terraform outputs.
