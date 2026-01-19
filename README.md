@@ -84,13 +84,15 @@ This provisions the following components:
 
 
 
-##Configuring the Servers
+## Configuring the Servers
 ```
 cd ansible
 ansible-playbook -i inventory/hcloud.yml site.yml
 ```
 Hosts are discovered dynamically using Hetzner Cloud labels and configured according to their assigned roles.
-**Figure 1: Ansible Configuration Overview**
+
+
+** Figure 1: Ansible Configuration Overview **
 <img width="1713" height="935" alt="Ansible_Configuration_1" src="https://github.com/user-attachments/assets/4edd5a73-aefd-4aed-b885-798ddc4fe28d" />
 
 
