@@ -40,9 +40,11 @@ Ensure the following are installed and available:
 Environment variables:
 
 ```bash
-export TF_VAR_hcloud_token="<your_hetzner_token>"
-export HCLOUD_TOKEN="<your_hetzner_token>"
+export HCLOUD_TOKEN="<hetzner_token>"
 ```
+## Repository Structure
+
+```text
 .
 ├── terraform/
 │   ├── modules/
@@ -62,3 +64,47 @@ export HCLOUD_TOKEN="<your_hetzner_token>"
 │   ├── Dockerfile
 │   └── compose.yaml
 └── README.md
+```
+##Deploying the Infrastructure
+Provision all cloud resources using Terraform:
+```bash
+cd terraform
+terraform init
+terraform apply
+```
+This provisions the following components:
+
+- Virtual network and firewall rules
+
+- Load balancer
+
+- API servers
+
+- Database servers
+
+##Configuring the Servers
+```
+cd ansible
+ansible-playbook -i inventory/hcloud.yml site.yml
+```
+Hosts are discovered dynamically using Hetzner Cloud labels and configured according to their assigned roles.
+
+
+##Verifying the Deployment
+
+Retrieve the load balancer IP address or DNS name from Terraform outputs.
+
+Verify the health check endpoint:
+
+```
+curl http://<load_balancer_ip>/health
+curl http://<load_balancer_ip>:80/weather
+
+```
+
+
+
+
+
+
+
