@@ -95,7 +95,7 @@ Hosts are discovered dynamically using Hetzner Cloud labels and configured accor
 ** Figure 1: Ansible Configuration**
 <img width="1713" height="935" alt="Ansible_Configuration_1" src="https://github.com/user-attachments/assets/4edd5a73-aefd-4aed-b885-798ddc4fe28d" />
 
-** Figure 1: Ansible Configuration Overview **
+** Figure 2: Ansible Configuration Overview **
 <img width="1887" height="983" alt="Ansible_Configuration_2" src="https://github.com/user-attachments/assets/1463f2ac-5fb0-4305-a017-a74968802af7" />
 
 
@@ -110,7 +110,7 @@ curl http://<load_balancer_ip>/health
 curl http://<load_balancer_ip>:80/weather
 
 ```
-** Figure 1: Testing the deployment**
+** Figure 3: Testing the deployment**
 <img width="997" height="208" alt="Ansible_Output_Test" src="https://github.com/user-attachments/assets/55f66c7b-fa39-4ec1-af75-144cd4b1c685" />
 
 
