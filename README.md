@@ -40,7 +40,7 @@ Ensure the following are installed and available:
 Environment variables:
 
 ```bash
-export HCLOUD_TOKEN="<hetzner_token>"
+$env:TF_VAR_hcloud_token="<hetzner_token>"
 ```
 ## Repository Structure
 
