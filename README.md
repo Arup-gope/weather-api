@@ -111,7 +111,8 @@ curl http://<load_balancer_ip>:80/weather
 
 ```
 ** Figure 3: Testing the deployment**
-<img width="997" height="208" alt="Ansible_Output_Test" src="https://github.com/user-attachments/assets/55f66c7b-fa39-4ec1-af75-144cd4b1c685" />
+
+<img width="1017" height="270" alt="Ansible_Output_Test" src="https://github.com/user-attachments/assets/f188799b-9000-4959-ab44-2a27555a3da4" />
 
 
 
